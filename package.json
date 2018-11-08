@@ -1,5 +1,5 @@
 {
-  "name": "sg-holidays-sdk",
+  "name": "@salling-group/holidays",
   "version": "1.0.0",
   "description": "An SDK for Salling Group's Holidays API ",
   "main": "index.js",
@@ -9,7 +9,7 @@
     "url": "https://developer.sallinggroup.com/"
   },
   "dependencies": {
-    "sg-base-sdk": "1.0.0"
+    "@salling-group/auth": "1.0.0"
   },
   "devDependencies": {
     "eslint": "5.2.0"
