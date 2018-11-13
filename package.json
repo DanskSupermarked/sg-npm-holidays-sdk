@@ -3,6 +3,7 @@
   "description": "An SDK for Salling Group's Holidays API ",
   "repository": "https://github.com/DanskSupermarked/sg-npm-holidays-sdk",
   "version": "1.0.0",
+  "license": "MIT",
   "author": {
     "name": "Salling Group - API Developers",
     "email": "apisupport@sallinggroup.com",
