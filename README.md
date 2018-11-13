@@ -1,4 +1,4 @@
-# Salling Group Stores SDK
+# Salling Group Holidays SDK
 This SDK simplifies the process of querying Salling Group's Holidays API.
 Through this SDK you will be able to query Danish (as of now) holidays.
 The requests are made through the Salling Group API which can be found [here](https://developer.sallinggroup.com/).
