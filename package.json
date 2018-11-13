@@ -1,21 +1,19 @@
 {
-  "name": "sg-holidays-sdk",
-  "version": "1.0.0",
+  "name": "@salling-group/holidays",
   "description": "An SDK for Salling Group's Holidays API ",
-  "main": "index.js",
+  "repository": "https://github.com/DanskSupermarked/sg-npm-holidays-sdk",
+  "version": "1.0.0",
+  "license": "MIT",
   "author": {
-    "name": "API Devs",
+    "name": "Salling Group - API Developers",
     "email": "apisupport@sallinggroup.com",
     "url": "https://developer.sallinggroup.com/"
   },
+  "main": "index.js",
   "dependencies": {
-    "sg-base-sdk": "1.0.0"
+    "@salling-group/auth": "1.0.0"
   },
   "devDependencies": {
     "eslint": "5.2.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/DanskSupermarked/sg-npm-holidays-sdk"
   }
 }

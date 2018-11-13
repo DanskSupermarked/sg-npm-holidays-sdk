@@ -1,4 +1,6 @@
 const BASE_URL = '/v1/holidays/';
+const { createInstance } = require('@salling-group/auth');
+const { version } = require('./package');
 
 /**
  * @typedef {Object} Holiday A holiday entry.
@@ -36,10 +38,21 @@ class HolidaysAPI {
   /**
    * Initialize a new Holidays API wrapper.
    *
-   * @param {Object} api A SallingGroupAPI instance.
+   * @param {Object} options Options for the instance.
+   * @param {Object} options.auth Credentials for the instance.
+   * @param {String} options.auth.type The type of authentication.
+   * @param {String} [options.auth.email] The email used for JWT.
+   * @param {String} [options.auth.secret] The secret used for JWT.
+   * @param {String} [options.auth.token] The token used for Bearer.
+   * @param {String} [options.applicationName]
+   * The name of the application which will use this instance.
+   * This will be sent in the user-agent header.
    */
-  constructor(api) {
-    this.api = api;
+  constructor(options) {
+    this.instance = createInstance({
+      ...options,
+      'baseName': `Holidays SDK v${version}`,
+    });
   }
 
   /**
@@ -49,7 +62,7 @@ class HolidaysAPI {
    * @returns {Promise<Boolean>} Whether the date is a holiday.
    */
   async isHoliday(date) {
-    const response = await this.api.get(`${BASE_URL}is-holiday`, { 'params': { 'date': toDateFormat(date) } });
+    const response = await this.instance.get(`${BASE_URL}is-holiday`, { 'params': { 'date': toDateFormat(date) } });
     return response.data;
   }
 
@@ -60,7 +73,7 @@ class HolidaysAPI {
    * @returns {Promise<[Holiday]>} Holidays between the two dates.
    */
   async holidaysInBetween(startDate, endDate) {
-    const response = await this.api.get(BASE_URL, {
+    const response = await this.instance.get(BASE_URL, {
       'params': {
         'endDate': toDateFormat(endDate),
         'startDate': toDateFormat(startDate),
@@ -76,7 +89,7 @@ class HolidaysAPI {
    * @returns {Promise<[Holiday]>} Holidays between today and the given end date.
    */
   async holidaysUntil(date) {
-    const response = await this.api.get(BASE_URL, {
+    const response = await this.instance.get(BASE_URL, {
       'params': {
         'endDate': toDateFormat(date),
       },
@@ -90,7 +103,7 @@ class HolidaysAPI {
    * @returns {Promise<[Holiday]>} Holidays in the upcoming year from today.
    */
   async holidaysWithinUpcomingYear() {
-    const response = await this.api.get(BASE_URL);
+    const response = await this.instance.get(BASE_URL);
     return response.data;
   }
 

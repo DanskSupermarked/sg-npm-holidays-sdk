@@ -10,9 +10,14 @@ You can get your credentials through the [developer portal](https://developer.sa
 This prints a list of the holidays of 2017 and whether they are [national holidays](#holiday-entry).
 You will need to get a JWT secret or Bearer token with access to the Stores API from the [developer portal](https://developer.sallinggroup.com/). 
 ```js
-const { SallingGroupAPI } = require('sg-base-sdk');
-const HolidaysSDK = require('./index');
-const instance = new HolidaysSDK(SallingGroupAPI.bearer('my_token'));
+const Holidays = require('@salling-group/holidays');
+const instance = new Holidays({
+  'applicationName': 'My Application v1.0.0',
+  'auth': {
+    'type': 'bearer',
+    'token': 'my_token',
+  },
+});
 
 instance.holidaysInBetween('2017-01-01', '2017-12-31').then((holidays) => {
   for (const holiday of holidays) {
@@ -68,15 +73,31 @@ An example of this could be:
 ```
 
 ## Documentation
-### `constructor(api)`
+### `constructor(options)`
 This initializes a new Holidays SDK object.
-`api` must be an instance returned by `sg-base-sdk`.
+`options` must be an object containing an `auth` object with the following contract:
+
+|Property|Value|Required|Description|
+|--------|-----|--------|-----------|
+|`type`|`'jwt'` or `'bearer'`|Yes|The authentication type. This is either a JWT or a Bearer Token.|
+|`token`|`String`|If `type` is `'bearer'`.|The token associared with the bearer token credentials.|
+|`email`|`String`|If `type` is `'jwt'`.|The email associated with the JWT credentials.|
+|`secret`|`String`|If `type` is `'jwt'`.|The secret associated with the JWT credentials.|
+
+`applicationName` should be set in the `options` object, but this is optional.
+(This value will be sent in the UserAgent during requests.)
 
 Example:
 ```js
-const { SallingGroupAPI } = require('sg-base-sdk');
-const HolidaysSDK = require('sg-holidays-sdk');
-const instance = new HolidaysSDK(SallingGroupAPI.jwt('my_email', 'my_key'));
+const Holidays = require('@salling-group/holidays');
+const instance = new Holidays({
+  'applicationName': 'My Application v1.0.0',
+  'auth': {
+    'type': 'jwt',
+    'email': 'my_email',
+    'secret': 'my_secret'
+  },
+});
 ```
 
 ### `async isHoliday(date)`
