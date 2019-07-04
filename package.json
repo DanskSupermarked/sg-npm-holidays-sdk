@@ -11,9 +11,9 @@
   },
   "main": "index.js",
   "dependencies": {
-    "@salling-group/auth": "1.0.0"
+    "@salling-group/auth": "^1.0.2"
   },
   "devDependencies": {
-    "eslint": "5.2.0"
+    "eslint": "^6.0.1"
   }
 }
