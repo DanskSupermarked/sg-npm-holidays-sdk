@@ -8,7 +8,7 @@ You can get your credentials through the [developer portal](https://developer.sa
 
 ## Getting Started.
 This prints a list of the holidays of 2017 and whether they are [national holidays](#holiday-entry).
-You will need to get a JWT secret or Bearer token with access to the Stores API from the [developer portal](https://developer.sallinggroup.com/). 
+You will need to get a JWT secret or Bearer token with access to the Stores API from the [developer portal](https://developer.sallinggroup.com/).
 ```js
 const Holidays = require('@salling-group/holidays');
 const instance = new Holidays({
@@ -24,7 +24,7 @@ instance.holidaysInBetween('2017-01-01', '2017-12-31').then((holidays) => {
     console.log(`${holiday.date} - ${holiday.name}${holiday.nationalHoliday ? ' (national)' : ''}`);
   }
 });
-``` 
+```
 This would output:
 ```
 2017-01-01 - Nytårsdag (national)
@@ -65,7 +65,7 @@ Name|Type|Description
 
 An example of this could be:
 ```json
-{ 
+{
   "date": "2018-10-31",
   "name": "Allehelgensaften",
   "nationalHoliday": false
@@ -81,7 +81,7 @@ This initializes a new Holidays SDK object.
 |--------|-----|--------|-----------|
 |`type`|`'jwt'` or `'bearer'`|Yes|The authentication type. This is either a JWT or a Bearer Token.|
 |`token`|`String`|If `type` is `'bearer'`.|The token associared with the bearer token credentials.|
-|`email`|`String`|If `type` is `'jwt'`.|The email associated with the JWT credentials.|
+|`issuer`|`String`|If `type` is `'jwt'`.|The issuer associated with the JWT credentials.|
 |`secret`|`String`|If `type` is `'jwt'`.|The secret associated with the JWT credentials.|
 
 `applicationName` should be set in the `options` object, but this is optional.
@@ -94,7 +94,7 @@ const instance = new Holidays({
   'applicationName': 'My Application v1.0.0',
   'auth': {
     'type': 'jwt',
-    'email': 'my_email',
+    'issuer': 'my_issuer',
     'secret': 'my_secret'
   },
 });
